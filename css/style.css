@@ -49,7 +49,6 @@ label {
     border: 2px solid #FFD700; /* Bordo dorato */
     padding: 10px;
     margin-bottom: 10px;
-    max-width: 400px; /* Larghezza fissa per i bonus */
     display: flex; /* Utilizza il modello di flessbox */
     justify-content: space-between; /* Allineamento dei figli ai margini opposti */
     align-items: center; /* Allineamento verticale al centro */
@@ -57,6 +56,10 @@ label {
     color: white;
     position: relative; /* Posizione relativa per consentire il posizionamento assoluto */
     gap: 30px;
+}
+
+#bonusContainer {
+    width: 500px;
 }
 
 #main-content {
