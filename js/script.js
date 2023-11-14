@@ -105,6 +105,8 @@ function aggiungiBonusInPagina() {
 
     // Aggiungi il bonus al localStorage
     salvaBonus(selectedBonus);
+
+    location.reload();
 }
 
 // Funzione per ripristinare la lista dei bonus
