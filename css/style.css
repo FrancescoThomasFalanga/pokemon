@@ -6,9 +6,9 @@ body {
     margin: 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 h1 {
@@ -49,20 +49,21 @@ label {
     border: 2px solid #FFD700; /* Bordo dorato */
     padding: 10px;
     margin-bottom: 10px;
-    width: 300px; /* Larghezza fissa per i bonus */
+    max-width: 400px; /* Larghezza fissa per i bonus */
     display: flex; /* Utilizza il modello di flessbox */
     justify-content: space-between; /* Allineamento dei figli ai margini opposti */
     align-items: center; /* Allineamento verticale al centro */
     background-color: #4C4C4C; /* Colore grigio scuro */
     color: white;
     position: relative; /* Posizione relativa per consentire il posizionamento assoluto */
+    gap: 30px;
 }
 
-.bonusArrow {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
+#main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #punteggioContainer {
@@ -96,4 +97,10 @@ ol li {
 
 ol li:last-child {
     margin-bottom: 15px;
+}
+
+#resetButton {
+    position: fixed;
+    top: 10px;
+    right: 10px;
 }

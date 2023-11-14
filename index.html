@@ -10,16 +10,19 @@
 </head>
 <body>
 
-    <h1>Pokemon Tracker</h1>
-
-    <p style="font-size: 14px; max-width: 700px; line-height: 16px;">Benvenuto al Pokemon Tracker! Questo programma ti permette di tenere traccia dei tuoi progressi e bonus durante il gioco dei Pokémon con i tuoi amici. Segui i passaggi seguenti:</p>
-
-    <ol>
-        <li>Seleziona un bonus dal menu a tendina.</li>
-        <li>Clicca su "Aggiungi Bonus in Pagina" per visualizzare il bonus selezionato.</li>
-        <li>Clicca sul bonus visualizzato per aggiungere i punti al tuo punteggio totale.</li>
-        <li>Utilizza i pulsanti "-" e "+" per incrementare o decrementare il tuo punteggio.</li>
-    </ol>
+    <div class="main-content">
+        <h1>Pokemon Tracker</h1>
+    
+        <p style="font-size: 14px; max-width: 700px; line-height: 16px;">Benvenuto al Pokemon Tracker! Questo programma ti permette di tenere traccia dei tuoi progressi e bonus durante il gioco dei Pokémon con i tuoi amici. Segui i passaggi seguenti:</p>
+    
+        <ol>
+            <li>Seleziona un bonus dal menu a tendina.</li>
+            <li>Clicca su "Aggiungi Bonus in Pagina" per visualizzare il bonus selezionato.</li>
+            <li>Clicca sul bonus visualizzato per aggiungere i punti al tuo punteggio totale.</li>
+            <li>Utilizza i pulsanti "-" e "+" per incrementare o decrementare il tuo punteggio.</li>
+        </ol>
+    
+    </div>
 
     <div class="flex-main">
 
@@ -41,9 +44,12 @@
         <button class="button" onclick="aggiungiPunti()">+5</button>
     </div>
 
+
     <footer>
         <p>Prodotto da "Il tuo Ciccio di quartiere"</p>
     </footer>
+
+    <button id="resetButton" class="button" onclick="resetPunteggio()">RESET</button>
 
     <script src="js/script.js">
     </script>

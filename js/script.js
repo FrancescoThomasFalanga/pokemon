@@ -159,3 +159,8 @@ function aggiornaPunteggio() {
     const punteggioElement = document.getElementById("punteggio");
     punteggioElement.textContent = punteggioAttuale;
 }
+
+function resetPunteggio() {
+    localStorage.removeItem('punteggio');
+    document.getElementById('punteggio').innerText = '0';
+}
