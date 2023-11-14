@@ -254,9 +254,33 @@ function toggleWelcomeMessage() {
         // Se è nascosto, mostralo
         welcomeMessage.style.display = 'block';
         instructionsList.style.display = 'block';
+
+        // Salva lo stato nel localStorage
+        localStorage.setItem('welcomeMessageVisible', 'true');
     } else {
         // Altrimenti, nascondilo
         welcomeMessage.style.display = 'none';
         instructionsList.style.display = 'none';
+
+        // Salva lo stato nel localStorage
+        localStorage.setItem('welcomeMessageVisible', 'false');
     }
 }
+
+// Funzione per ripristinare lo stato al caricamento della pagina
+function restoreWelcomeMessageState() {
+    const welcomeMessageVisible = localStorage.getItem('welcomeMessageVisible');
+
+    if (welcomeMessageVisible === 'true') {
+        // Se lo stato è "true", mostra il messaggio
+        document.getElementById('welcomeMessage').style.display = 'block';
+        document.getElementById('instructionsList').style.display = 'block';
+    } else {
+        // Altrimenti, nascondilo
+        document.getElementById('welcomeMessage').style.display = 'none';
+        document.getElementById('instructionsList').style.display = 'none';
+    }
+}
+
+// Chiama la funzione al caricamento della pagina
+restoreWelcomeMessageState();
