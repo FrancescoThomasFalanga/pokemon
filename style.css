@@ -1,0 +1,99 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: 'Press Start 2P', cursive; /* Aggiunto un font in stile Pokémon */
+    text-align: center;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h1 {
+    color: #FFD700; /* Colore dorato per l'header */
+}
+
+h2 {
+    margin: 0;
+}
+
+label {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+#bonusSelect, .button {
+    font-size: 16px;
+    padding: 8px;
+    border: 2px solid #FFD700; /* Bordo dorato */
+    border-radius: 5px;
+    background-color: #4C4C4C; /* Colore grigio scuro */
+    color: white;
+    /* margin-top: 10px; */
+    cursor: pointer;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.button {
+    margin: 20px;
+}
+
+.button:hover, #bonusSelect:hover {
+    background-color: #666; /* Cambia colore al passaggio del mouse */
+}
+
+.bonusDiv {
+    cursor: pointer;
+    border: 2px solid #FFD700; /* Bordo dorato */
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 300px; /* Larghezza fissa per i bonus */
+    display: flex; /* Utilizza il modello di flessbox */
+    justify-content: space-between; /* Allineamento dei figli ai margini opposti */
+    align-items: center; /* Allineamento verticale al centro */
+    background-color: #4C4C4C; /* Colore grigio scuro */
+    color: white;
+    position: relative; /* Posizione relativa per consentire il posizionamento assoluto */
+}
+
+.bonusArrow {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#punteggioContainer {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+#punteggio {
+    font-size: 24px;
+    /* margin: 0 10px; */
+}
+
+.flex-main {
+    display: flex;
+    flex-direction: column;
+}
+
+ol {
+    font-size: 14px;
+    max-width: 700px;
+}
+
+ol li {
+    margin-bottom: 8px;
+    line-height: 16px;
+}
+
+ol li:last-child {
+    margin-bottom: 15px;
+}
