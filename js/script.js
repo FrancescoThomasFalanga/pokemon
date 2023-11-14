@@ -245,10 +245,18 @@ function resetPunteggio() {
 
 }
 
-function aggiungiPuntiEvo() {
-    const punteggioSpan = document.getElementById('punteggio');
-    let punteggio = parseInt(punteggioSpan.innerText) || 0;
-    punteggio += 40;
-    punteggioSpan.innerText = punteggio;
-    localStorage.setItem('punteggio', punteggio);
+function toggleWelcomeMessage() {
+    const welcomeMessage = document.getElementById('welcomeMessage');
+    const instructionsList = document.getElementById('instructionsList');
+
+    // Verifica se il messaggio è attualmente visibile
+    if (welcomeMessage.style.display === 'none' || welcomeMessage.style.display === '') {
+        // Se è nascosto, mostralo
+        welcomeMessage.style.display = 'block';
+        instructionsList.style.display = 'block';
+    } else {
+        // Altrimenti, nascondilo
+        welcomeMessage.style.display = 'none';
+        instructionsList.style.display = 'none';
+    }
 }
