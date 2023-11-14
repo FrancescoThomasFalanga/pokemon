@@ -9,7 +9,7 @@ caricaBonusSalvati();
 const bonusDatabase = JSON.parse(localStorage.getItem('bonusDatabase')) || [
     { title: "Out Of Lab", points: 20 },
     { title: "Torre Sprout", points: 25 },
-    { title: "Brock", points: 70 },
+    { title: "Falkner", points: 70 },
     { title: "Union Cave", points: 10 },
     { title: "Bugsy", points: 25 },
     { title: "Rivale Post Bugsy", points: 25 },
@@ -44,7 +44,7 @@ const bonusDatabase = JSON.parse(localStorage.getItem('bonusDatabase')) || [
 let originalBonusDatabase = [
     { title: "Out Of Lab", points: 20 },
     { title: "Torre Sprout", points: 25 },
-    { title: "Brock", points: 70 },
+    { title: "Falkner", points: 70 },
     { title: "Union Cave", points: 10 },
     { title: "Bugsy", points: 25 },
     { title: "Rivale Post Bugsy", points: 25 },
