@@ -38,10 +38,14 @@
 
     <div id="bonusContainer"></div>
 
+    
     <div id="punteggioContainer">
-        <button class="button" onclick="sottraiPunti()">-5</button>
-        <h2>Punteggio: <span id="punteggio">0</span></h2>
-        <button class="button" onclick="aggiungiPunti()">+5</button>
+        <button id="evoButton" class="button" onclick="aggiungiPuntiEvo()">Evo +40</button>
+        <div class="punteggioFlex">
+            <button class="button" onclick="sottraiPunti()">-5</button>
+            <h2>Punteggio: <span id="punteggio">0</span></h2>
+            <button class="button" onclick="aggiungiPunti()">+5</button>
+        </div>
     </div>
 
 
@@ -49,7 +53,7 @@
         <p>Prodotto da "Il tuo Ciccio di quartiere"</p>
     </footer>
 
-    <button id="resetButton" class="button" onclick="resetPunteggio()">RESET</button>
+    <button id="resetButton" class="button" onclick="resetPunteggio()">RESET TOTALE</button>
 
     <script src="js/script.js">
     </script>

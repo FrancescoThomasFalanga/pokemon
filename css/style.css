@@ -70,9 +70,17 @@ label {
     display: flex;
     align-items: center;
     margin-top: 20px;
-    gap: 20px;
+    gap: 10px;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+}
+
+.punteggioFlex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
 }
 
 #punteggio {

@@ -103,27 +103,19 @@ function aggiungiPuntiBonus(punti) {
 }
 
 function aggiungiPunti() {
-    // Implementa la logica per sommare i punti del bonus selezionato al punteggio
-    // In questo esempio, stiamo semplicemente incrementando il punteggio di 10
-    punteggioAttuale += 5;
-
-    // Salva il punteggio nello storage locale
-    localStorage.setItem('punteggio', punteggioAttuale);
-
-    // Aggiorna il punteggio visualizzato
-    aggiornaPunteggio();
+    const punteggioSpan = document.getElementById('punteggio');
+    let punteggio = parseInt(punteggioSpan.innerText) || 0;
+    punteggio += 5;
+    punteggioSpan.innerText = punteggio;
+    localStorage.setItem('punteggio', punteggio);
 }
 
 function sottraiPunti() {
-    // Implementa la logica per sottrarre i punti del bonus selezionato al punteggio
-    // In questo esempio, stiamo semplicemente sottraendo il punteggio di 5
-    punteggioAttuale -= 5;
-
-    // Salva il punteggio nello storage locale
-    localStorage.setItem('punteggio', punteggioAttuale);
-
-    // Aggiorna il punteggio visualizzato
-    aggiornaPunteggio();
+    const punteggioSpan = document.getElementById('punteggio');
+    let punteggio = parseInt(punteggioSpan.innerText) || 0;
+    punteggio -= 5;
+    punteggioSpan.innerText = punteggio;
+    localStorage.setItem('punteggio', punteggio);
 }
 
 function caricaBonusSalvati() {
@@ -163,4 +155,12 @@ function aggiornaPunteggio() {
 function resetPunteggio() {
     localStorage.removeItem('punteggio');
     document.getElementById('punteggio').innerText = '0';
+}
+
+function aggiungiPuntiEvo() {
+    const punteggioSpan = document.getElementById('punteggio');
+    let punteggio = parseInt(punteggioSpan.innerText) || 0;
+    punteggio += 40;
+    punteggioSpan.innerText = punteggio;
+    localStorage.setItem('punteggio', punteggio);
 }
