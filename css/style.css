@@ -107,8 +107,16 @@ ol li:last-child {
     margin-bottom: 15px;
 }
 
-#resetButton {
+#resetButton, #resetBonusButton {
+    margin: 0;
+}
+
+.flex {
+
     position: fixed;
     top: 10px;
     right: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }

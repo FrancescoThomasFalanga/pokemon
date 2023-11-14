@@ -53,8 +53,13 @@
         <p>Prodotto da "Il tuo Ciccio di quartiere"</p>
     </footer>
 
-    <button id="resetButton" class="button" onclick="resetPunteggio()">RESET TOTALE</button>
-
+    <div class="flex">
+        <button id="resetButton" class="button" onclick="resetPunteggio()">RESET TOTALE</button>
+        <hr style="width: 50px; background-color: #FFD700; color: #FFD700; height: 4px; border: none;">
+        <button id="resetBonusButton" class="button" onclick="resetBonus()">RESET BONUS</button>
+        <span id="resetCounter">Tentativo N. 0</span>
+    </div>
+    
     <script src="js/script.js">
     </script>
 
