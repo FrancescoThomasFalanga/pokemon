@@ -1,9 +1,9 @@
 let punteggioAttuale = parseInt(localStorage.getItem('punteggio')) || 0;
-
 let resetCounter = parseInt(localStorage.getItem('resetCounter')) || 0;
 
 aggiornaPunteggio();
 aggiornaCounter();
+caricaBonusSalvati();
 
 // Array di bonus dal "database"
 const bonusDatabase = JSON.parse(localStorage.getItem('bonusDatabase')) || [
@@ -41,6 +41,40 @@ const bonusDatabase = JSON.parse(localStorage.getItem('bonusDatabase')) || [
     // Aggiungi altri bonus secondo necessità
 ];
 
+let originalBonusDatabase = [
+    { title: "Out Of Lab", points: 20 },
+    { title: "Torre Sprout", points: 25 },
+    { title: "Brock", points: 70 },
+    { title: "Union Cave", points: 10 },
+    { title: "Bugsy", points: 25 },
+    { title: "Rivale Post Bugsy", points: 25 },
+    { title: "Whitney", points: 15 },
+    { title: "Torre Bruciata", points: 10 },
+    { title: "Rivale Torre", points: 10 },
+    { title: "Mt. Mortar", points: 10 },
+    { title: "Faro", points: 10 },
+    { title: "Nina", points: 15 },
+    { title: "Grotta Celeste", points: 10 },
+    { title: "Team Rocket HQ", points: 20 },
+    { title: "Erika", points: 20 },
+    { title: "Jasmine", points: 35 },
+    { title: "Pryce", points: 20 },
+    { title: "T. Radio #1", points: 10 },
+    { title: "Tunnel e T. Radio #2", points: 25 },
+    { title: "Rivale Tunnel", points: 25 },
+    { title: "Clair", points: 40 },
+    { title: "Kimono", points: 20 },
+    { title: "Rivale Via Vittoria", points: 40 },
+    { title: "Via Vittoria", points: 20 },
+    { title: "Will", points: 100 },
+    { title: "Koga", points: 130 },
+    { title: "Bruno", points: 160 },
+    { title: "Karen", points: 200 },
+    { title: "Lance", points: 500 },
+    { title: "Blu", points: 350 },
+    { title: "Rosso", points: 700 },
+];
+
 // Popola dinamicamente le opzioni del select
 const bonusSelect = document.getElementById("bonusSelect");
 bonusDatabase.forEach(bonus => {
@@ -48,9 +82,6 @@ bonusDatabase.forEach(bonus => {
     option.text = bonus.title;
     bonusSelect.add(option);
 });
-
-// Carica bonus salvati nel localStorage
-caricaBonusSalvati();
 
 function rimuoviBonusDallaLista(selectedBonusIndex) {
     bonusDatabase.splice(selectedBonusIndex, 1);
@@ -62,19 +93,18 @@ function aggiungiBonusInPagina() {
     const selectedBonusIndex = bonusSelect.selectedIndex;
     const selectedBonus = bonusDatabase[selectedBonusIndex];
 
-    // Verifica se il bonus è già presente in pagina
-    if (!isBonusPresente(selectedBonus)) {
-        // Visualizza il bonus in pagina
-        visualizzaBonusInPagina(selectedBonus);
+    // Visualizza il bonus in pagina
+    visualizzaBonusInPagina(selectedBonus);
 
-        // Rimuovi il bonus dalla lista dei bonus disponibili
-        rimuoviBonusDallaLista(selectedBonusIndex);
+    bonusDatabase.splice(selectedBonusIndex, 1);
 
-        // Aggiungi il bonus al localStorage
-        salvaBonus(selectedBonus);
-    } else {
-        alert("Questo bonus è già presente in pagina.");
-    }
+    localStorage.setItem("bonusDatabase", JSON.stringify(bonusDatabase));
+
+    // Rimuovi il bonus dalla lista dei bonus disponibili
+    rimuoviBonusDallaLista(selectedBonusIndex);
+
+    // Aggiungi il bonus al localStorage
+    salvaBonus(selectedBonus);
 }
 
 // Funzione per ripristinare la lista dei bonus
@@ -92,51 +122,21 @@ function resetBonus() {
     // Ripristina la lista dei bonus dal "database"
     bonusSelect.innerHTML = ""; // Rimuovi tutte le opzioni nel select
 
-    let copyBonusDatabase = [
-        { title: "Out Of Lab", points: 20 },
-        { title: "Torre Sprout", points: 25 },
-        { title: "Brock", points: 70 },
-        { title: "Union Cave", points: 10 },
-        { title: "Bugsy", points: 25 },
-        { title: "Rivale Post Bugsy", points: 25 },
-        { title: "Whitney", points: 15 },
-        { title: "Torre Bruciata", points: 10 },
-        { title: "Rivale Torre", points: 10 },
-        { title: "Mt. Mortar", points: 10 },
-        { title: "Faro", points: 10 },
-        { title: "Nina", points: 15 },
-        { title: "Grotta Celeste", points: 10 },
-        { title: "Team Rocket HQ", points: 20 },
-        { title: "Erika", points: 20 },
-        { title: "Jasmine", points: 35 },
-        { title: "Pryce", points: 20 },
-        { title: "T. Radio #1", points: 10 },
-        { title: "Tunnel e T. Radio #2", points: 25 },
-        { title: "Rivale Tunnel", points: 25 },
-        { title: "Clair", points: 40 },
-        { title: "Kimono", points: 20 },
-        { title: "Rivale Via Vittoria", points: 40 },
-        { title: "Via Vittoria", points: 20 },
-        { title: "Will", points: 100 },
-        { title: "Koga", points: 130 },
-        { title: "Bruno", points: 160 },
-        { title: "Karen", points: 200 },
-        { title: "Lance", points: 500 },
-        { title: "Blu", points: 350 },
-        { title: "Rosso", points: 700 },
-    ]
-
     // Popola dinamicamente le opzioni del select con la lista completa di bonus
-    copyBonusDatabase.forEach(bonus => {
+    originalBonusDatabase.forEach(bonus => {
         const option = document.createElement("option");
         option.text = bonus.title;
         bonusSelect.add(option);
     });
 
     // Salva la lista completa dei bonus nel localStorage
-    localStorage.setItem('bonusDatabase', JSON.stringify(copyBonusDatabase));
+    localStorage.setItem('bonusDatabase', JSON.stringify(originalBonusDatabase));
 
-    aggiornaCounter()
+    localStorage.removeItem("bonusSalvati");
+    
+    aggiornaCounter();
+
+    location.reload();
 }
 
 function isBonusPresente(bonus) {
@@ -236,6 +236,8 @@ function resetPunteggio() {
     localStorage.removeItem("bonusSalvati");
     localStorage.removeItem("bonusDatabase");
     localStorage.removeItem("resetCounter");
+
+    localStorage.setItem("bonusDatabase", JSON.stringify(originalBonusDatabase));
 
     location.reload();
 
