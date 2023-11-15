@@ -183,6 +183,8 @@ function aggiungiPunti() {
     punteggio += 5;
     punteggioSpan.innerText = punteggio;
     localStorage.setItem('punteggio', punteggio);
+
+    location.reload();
 }
 
 function sottraiPunti() {
@@ -191,6 +193,8 @@ function sottraiPunti() {
     punteggio -= 5;
     punteggioSpan.innerText = punteggio;
     localStorage.setItem('punteggio', punteggio);
+
+    location.reload();
 }
 
 function caricaBonusSalvati() {
@@ -243,6 +247,16 @@ function resetPunteggio() {
 
     location.reload();
 
+}
+
+function aggiungiPuntiEvo() {
+    const punteggioSpan = document.getElementById('punteggio');
+    let punteggio = parseInt(punteggioSpan.innerText) || 0;
+    punteggio += 40;
+    punteggioSpan.innerText = punteggio;
+    localStorage.setItem('punteggio', punteggio);
+
+    location.reload();
 }
 
 function toggleWelcomeMessage() {
