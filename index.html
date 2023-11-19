@@ -34,11 +34,21 @@
                 <!-- Opzioni caricate dinamicamente dal database -->
             </select>
         </div>
-
+        
         <button class="button" onclick="aggiungiBonusInPagina()">Aggiungi Bonus in Pagina</button>
+
+        <div>
+            <label for="impresaSelect">Seleziona un'Impresa:</label>
+            <select id="impresaSelect">
+                <!-- Opzioni caricate dinamicamente dal database -->
+            </select>
+            <button class="button" onclick="aggiungiImpresaInPagina()">Aggiungi Impresa</button>
+        </div>
     </div>
 
     <div id="bonusContainer"></div>
+
+    <div id="impresaContainer"></div>
 
     
     <div id="punteggioContainer">
@@ -58,7 +68,7 @@
     <div class="flex">
         <button id="resetButton" class="button" onclick="resetPunteggio()">RESET TOTALE</button>
         <hr style="width: 50px; background-color: #FFD700; color: #FFD700; height: 4px; border: none;">
-        <button id="resetBonusButton" class="button" onclick="resetBonus()">RESET BONUS</button>
+        <button id="resetBonusButton" class="button" onclick="resetParziale()">RESET PARZIALE</button>
         <span id="resetCounter">Tentativo N. 0</span>
     </div>
     

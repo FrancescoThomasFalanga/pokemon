@@ -4,6 +4,7 @@ let resetCounter = parseInt(localStorage.getItem('resetCounter')) || 0;
 aggiornaPunteggio();
 aggiornaCounter();
 caricaBonusSalvati();
+caricaImpresaSalvati();
 
 // Array di bonus dal "database"
 const bonusDatabase = JSON.parse(localStorage.getItem('bonusDatabase')) || [
@@ -40,6 +41,14 @@ const bonusDatabase = JSON.parse(localStorage.getItem('bonusDatabase')) || [
     // Aggiungi altri bonus secondo necessità
 ];
 
+const impresaDatabase = JSON.parse(localStorage.getItem('impresaDatabase')) || [
+    { title: "#1 Impresa", points: 150},
+    { title: "#2 Impresa", points: 200},
+    { title: "#3 Impresa", points: 250},
+    { title: "#4 Impresa", points: 300},
+    { title: "#5 Impresa", points: 350},
+];
+
 let originalBonusDatabase = [
     { title: "Out Of Lab", points: 20 },
     { title: "Torre Sprout", points: 25 },
@@ -73,7 +82,14 @@ let originalBonusDatabase = [
     { title: "Rosso", points: 700 },
 ];
 
-// Popola dinamicamente le opzioni del select
+let originalImpresaDatabase = [
+    { title: "#1 Impresa", points: 150},
+    { title: "#2 Impresa", points: 200},
+    { title: "#3 Impresa", points: 250},
+    { title: "#4 Impresa", points: 300},
+    { title: "#5 Impresa", points: 350},
+]
+
 const bonusSelect = document.getElementById("bonusSelect");
 bonusDatabase.forEach(bonus => {
     const option = document.createElement("option");
@@ -81,9 +97,21 @@ bonusDatabase.forEach(bonus => {
     bonusSelect.add(option);
 });
 
+const impresaSelect = document.getElementById("impresaSelect");
+impresaDatabase.forEach(impresa => {
+    const option = document.createElement("option");
+    option.text = impresa.title;
+    impresaSelect.add(option);
+});
+
 function rimuoviBonusDallaLista(selectedBonusIndex) {
     bonusDatabase.splice(selectedBonusIndex, 1);
     bonusSelect.remove(selectedBonusIndex);
+}
+
+function rimuoviImpresaDallaLista(selectedImpresaIndex) {
+    impresaDatabase.splice(selectedImpresaIndex, 1);
+    impresaSelect.remove(selectedImpresaIndex);
 }
 
 function aggiungiBonusInPagina() {
@@ -107,8 +135,25 @@ function aggiungiBonusInPagina() {
     location.reload();
 }
 
+function aggiungiImpresaInPagina() {
+    const selectedImpresaIndex = impresaSelect.selectedIndex;
+    const selectedImpresa = impresaDatabase[selectedImpresaIndex];
+
+    visualizzaImpresaInPagina(selectedImpresa);
+
+    impresaDatabase.splice(selectedImpresaIndex, 1);
+
+    localStorage.setItem("impresaDatabase", JSON.stringify(impresaDatabase));
+
+    rimuoviImpresaDallaLista(selectedImpresaIndex);
+
+    salvaImpresa(selectedImpresa);
+
+    location.reload();
+}
+
 // Funzione per ripristinare la lista dei bonus
-function resetBonus() {
+function resetParziale() {
 
     // Incrementa il contatore al click
     resetCounter++;
@@ -121,6 +166,7 @@ function resetBonus() {
 
     // Ripristina la lista dei bonus dal "database"
     bonusSelect.innerHTML = ""; // Rimuovi tutte le opzioni nel select
+    impresaSelect.innerHTML = "";
 
     // Popola dinamicamente le opzioni del select con la lista completa di bonus
     originalBonusDatabase.forEach(bonus => {
@@ -129,10 +175,20 @@ function resetBonus() {
         bonusSelect.add(option);
     });
 
+    originalImpresaDatabase.forEach(impresa => {
+        const option = document.createElement("option");
+        option.text = impresa.title;
+        impresaSelect.add(option);
+    });
+
     // Salva la lista completa dei bonus nel localStorage
     localStorage.setItem('bonusDatabase', JSON.stringify(originalBonusDatabase));
 
     localStorage.removeItem("bonusSalvati");
+
+    localStorage.setItem('impresaDatabase', JSON.stringify(originalImpresaDatabase));
+
+    localStorage.removeItem("impresaSalvati");
     
     aggiornaCounter();
 
@@ -142,6 +198,11 @@ function resetBonus() {
 function isBonusPresente(bonus) {
     const bonusSalvati = JSON.parse(localStorage.getItem('bonusSalvati')) || [];
     return bonusSalvati.some(b => b.title === bonus.title);
+}
+
+function isImpresaPresente(impresa) {
+    const impresaSalvati = JSON.parse(localStorage.getItem('impresaSalvati')) || [];
+    return impresaSalvati.some(b => b.title === impresa.title);
 }
 
 function visualizzaBonusInPagina(bonus) {
@@ -165,6 +226,24 @@ function visualizzaBonusInPagina(bonus) {
     });
 }
 
+function visualizzaImpresaInPagina(impresa) {
+
+    const impresaDiv = document.createElement("div");
+    impresaDiv.className = "impresaDiv";
+    
+    impresaDiv.innerHTML = `<strong>${impresa.title}</strong>`;
+    impresaDiv.innerHTML += `<span class="impresaPoints">+${impresa.points}</span>`;
+
+    const impresaContainer = document.getElementById("impresaContainer");
+    impresaContainer.appendChild(impresaDiv);
+
+    impresaDiv.addEventListener("click", function() {
+        aggiungiPuntiImpresa(impresa.points);
+
+        rimuoviImpresa(impresaDiv, impresa);
+    });
+}
+
 function aggiungiPuntiBonus(punti) {
     punteggioAttuale += punti;
 
@@ -172,6 +251,14 @@ function aggiungiPuntiBonus(punti) {
     localStorage.setItem('punteggio', punteggioAttuale);
 
     // Aggiorna il punteggio visualizzato
+    aggiornaPunteggio();
+}
+
+function aggiungiPuntiImpresa(punti) {
+    punteggioAttuale += punti;
+
+    localStorage.setItem('punteggio', punteggioAttuale);
+
     aggiornaPunteggio();
 }
 
@@ -202,10 +289,23 @@ function caricaBonusSalvati() {
     });
 }
 
+function caricaImpresaSalvati() {
+    const impresaSalvati = JSON.parse(localStorage.getItem('impresaSalvati')) || [];
+    impresaSalvati.forEach(impresa => {
+        visualizzaImpresaInPagina(impresa);
+    });
+}
+
 function salvaBonus(bonus) {
     const bonusSalvati = JSON.parse(localStorage.getItem('bonusSalvati')) || [];
     bonusSalvati.push(bonus);
     localStorage.setItem('bonusSalvati', JSON.stringify(bonusSalvati));
+}
+
+function salvaImpresa(impresa) {
+    const impresaSalvati = JSON.parse(localStorage.getItem('impresaSalvati')) || [];
+    impresaSalvati.push(impresa);
+    localStorage.setItem('impresaSalvati', JSON.stringify(impresaSalvati));
 }
 
 function rimuoviBonus(bonusDiv, bonus) {
@@ -224,6 +324,20 @@ function rimuoviBonus(bonusDiv, bonus) {
     }
 }
 
+function rimuoviImpresa(impresaDiv, impresa) {
+
+    const impresaContainer = document.getElementById("impresaContainer");
+
+    impresaContainer.removeChild(impresaDiv);
+
+    const impresaSalvati = JSON.parse(localStorage.getItem('impresaSalvati')) || [];
+    const index = impresaSalvati.findIndex(b => b.title === impresa.title);
+    if (index !== -1) {
+        impresaSalvati.splice(index, 1);
+        localStorage.setItem('impresaSalvati', JSON.stringify(impresaSalvati));
+    }
+}
+
 function aggiornaPunteggio() {
     const punteggioElement = document.getElementById("punteggio");
     punteggioElement.textContent = punteggioAttuale;
@@ -239,6 +353,8 @@ function resetPunteggio() {
     document.getElementById('punteggio').innerText = '0';
     localStorage.removeItem("bonusSalvati");
     localStorage.removeItem("bonusDatabase");
+    localStorage.removeItem("impresaSalvati");
+    localStorage.removeItem("impresaDatabase");
     localStorage.removeItem("resetCounter");
 
     localStorage.setItem("bonusDatabase", JSON.stringify(originalBonusDatabase));

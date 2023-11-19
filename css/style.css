@@ -24,7 +24,7 @@ label {
     margin-right: 10px;
 }
 
-#bonusSelect, .button {
+#bonusSelect, #impresaSelect, .button {
     font-size: 16px;
     padding: 8px;
     border: 2px solid #FFD700; /* Bordo dorato */
@@ -44,7 +44,7 @@ label {
     background-color: #666; /* Cambia colore al passaggio del mouse */
 }
 
-.bonusDiv {
+.bonusDiv, .impresaDiv {
     cursor: pointer;
     border: 2px solid #FFD700; /* Bordo dorato */
     padding: 10px;
@@ -58,7 +58,7 @@ label {
     gap: 30px;
 }
 
-#bonusContainer {
+#bonusContainer, #impresaContainer {
     width: 500px;
 }
 
@@ -94,6 +94,7 @@ label {
 .flex-main {
     display: flex;
     flex-direction: column;
+    gap: 20px;
 }
 
 ol {
