@@ -8,7 +8,7 @@ caricaImpresaSalvati();
 
 // Array di bonus dal "database"
 const bonusDatabase = JSON.parse(localStorage.getItem('bonusDatabase')) || [
-    { title: "Out Of Lab", points: 20 },
+    { title: "Out Of Lab", points: 25 },
     { title: "Torre Sprout", points: 25 },
     { title: "Falkner", points: 70 },
     { title: "Union Cave", points: 10 },
@@ -42,15 +42,15 @@ const bonusDatabase = JSON.parse(localStorage.getItem('bonusDatabase')) || [
 ];
 
 const impresaDatabase = JSON.parse(localStorage.getItem('impresaDatabase')) || [
-    { title: "#1 Impresa", points: 150},
-    { title: "#2 Impresa", points: 200},
+    { title: "#1 Impresa", points: 20},
+    { title: "#2 Impresa", points: 70},
     { title: "#3 Impresa", points: 250},
     { title: "#4 Impresa", points: 300},
     { title: "#5 Impresa", points: 350},
 ];
 
 let originalBonusDatabase = [
-    { title: "Out Of Lab", points: 20 },
+    { title: "Out Of Lab", points: 25 },
     { title: "Torre Sprout", points: 25 },
     { title: "Falkner", points: 70 },
     { title: "Union Cave", points: 10 },
@@ -83,8 +83,8 @@ let originalBonusDatabase = [
 ];
 
 let originalImpresaDatabase = [
-    { title: "#1 Impresa", points: 150},
-    { title: "#2 Impresa", points: 200},
+    { title: "#1 Impresa", points: 20},
+    { title: "#2 Impresa", points: 70},
     { title: "#3 Impresa", points: 250},
     { title: "#4 Impresa", points: 300},
     { title: "#5 Impresa", points: 350},
