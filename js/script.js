@@ -46,7 +46,6 @@ const impresaDatabase = JSON.parse(localStorage.getItem('impresaDatabase')) || [
     { title: "No Cure", points: 70},
     { title: "Max 499 Bst", points: 150},
     { title: "Re Lento", points: 80},
-    { title: "#5 Impresa", points: 350},
 ];
 
 let originalBonusDatabase = [
@@ -87,7 +86,6 @@ let originalImpresaDatabase = [
     { title: "No Cure", points: 70},
     { title: "Max 499 Bst", points: 150},
     { title: "Re Lento", points: 80},
-    { title: "#5 Impresa", points: 350},
 ]
 
 const bonusSelect = document.getElementById("bonusSelect");
