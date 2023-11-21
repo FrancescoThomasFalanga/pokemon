@@ -11,8 +11,78 @@ body {
     min-height: 100vh;
 }
 
+.main-content {
+    margin-top: 30px;
+    background-color: #FFD700;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
 h1 {
-    color: #FFD700; /* Colore dorato per l'header */
+    color: #e60012; /* Rosso Pokémon */
+    font-family: 'Press Start 2P', cursive;
+}
+
+#welcomeMessage, #instructionsList {
+    color: #333;
+}
+
+#instructionsList {
+    text-align: center;
+}
+
+#toggleButton {
+    background-color: #e60012;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#evoButton, .punteggioFlex button {
+    background-color: #4caf50; /* Verde Pokémon */
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#evoButton:hover, .punteggioFlex button:hover {
+    background-color: #35f33ca4;
+}
+
+.flex {
+    margin-top: 20px;
+    align-items: center;
+}
+
+hr {
+    margin: 0 10px;
+}
+
+#resetBonusButton {
+    background-color: #e60012;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#resetBonusButton:hover {
+    background-color: #e60013b0;
+}
+
+#resetCounter {
+    margin-left: 10px;
+}
+
+footer {
+    margin-top: 20px;
+    color: #777;
 }
 
 h2 {
