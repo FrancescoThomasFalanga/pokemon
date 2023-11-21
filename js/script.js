@@ -346,20 +346,20 @@ function aggiornaCounter() {
     counterElement.textContent = "Tentativo N." + resetCounter;
 }
 
-function resetPunteggio() {
-    localStorage.removeItem('punteggio');
-    document.getElementById('punteggio').innerText = '0';
-    localStorage.removeItem("bonusSalvati");
-    localStorage.removeItem("bonusDatabase");
-    localStorage.removeItem("impresaSalvati");
-    localStorage.removeItem("impresaDatabase");
-    localStorage.removeItem("resetCounter");
+// function resetPunteggio() {
+//     localStorage.removeItem('punteggio');
+//     document.getElementById('punteggio').innerText = '0';
+//     localStorage.removeItem("bonusSalvati");
+//     localStorage.removeItem("bonusDatabase");
+//     localStorage.removeItem("impresaSalvati");
+//     localStorage.removeItem("impresaDatabase");
+//     localStorage.removeItem("resetCounter");
 
-    localStorage.setItem("bonusDatabase", JSON.stringify(originalBonusDatabase));
+//     localStorage.setItem("bonusDatabase", JSON.stringify(originalBonusDatabase));
 
-    location.reload();
+//     location.reload();
 
-}
+// }
 
 function aggiungiPuntiEvo() {
     const punteggioSpan = document.getElementById('punteggio');
