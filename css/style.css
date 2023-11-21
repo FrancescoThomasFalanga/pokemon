@@ -125,7 +125,7 @@ hr {
 footer {
     margin-top: 20px;
     color: #777;
-    animation: slideInUp 1s ease-out;
+    /* animation: slideInUp 1s ease-out; */
 }
 
 @keyframes slideInUp {
